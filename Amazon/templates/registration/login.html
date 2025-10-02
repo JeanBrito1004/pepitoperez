@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - ROBLOX</title>
+    <style>
+        /* Estilos globales para el fondo y la fuente */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #212529; /* Color de fondo oscuro de tu página principal */
+            color: #d1d1d1; /* Color de texto claro */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Usamos Flexbox para centrar todo */
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Altura completa de la ventana del navegador */
+        }
+
+        /* Contenedor principal de la caja de login */
+        .login-container {
+            background-color: #2b3035; /* Color similar al de tus tarjetas de producto */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+            width: 350px;
+            text-align: center;
+        }
+
+        /* Estilo del título "ROBLOX" */
+        .login-title {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de los campos de formulario */
+        .login-container form p {
+            margin-bottom: 15px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #131921; /* Color de la barra de navegación */
+            color: #d1d1d1;
+            box-sizing: border-box; /* Para que el padding no cambie el ancho */
+        }
+
+        /* Estilo para los mensajes de error */
+        .login-error {
+            color: #ff6347; /* Un color de error */
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Estilo del botón de enviar */
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Un azul brillante, similar a los de Roblox */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-title">ROBLOX</div>
+    
+    <h2>Iniciar Sesión</h2>
+    
+    <form method="post">
+        {% csrf_token %} {% for field in form %}
+            <p>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+                {{ field }}
+                {% for error in field.errors %}
+                    <span class="login-error">{{ error }}</span>
+                {% endfor %}
+            </p>
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <p class="login-error">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+        
+        <button type="submit" class="login-button">Entrar</button>
+    </form>
+
+</div>
+
+</body>
+</html>

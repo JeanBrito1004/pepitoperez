@@ -1,0 +1,33 @@
+<style>
+    /* Copia aquí los estilos del body, container y colores oscuros de tu lista.html */
+    body { background-color: #212529; color: #d1d1d1; }
+    .form-container { 
+        max-width: 600px; margin: 50px auto; padding: 30px; 
+        background-color: #2b3035; border-radius: 8px; 
+    }
+    .form-container label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: bold; }
+    .form-container input, .form-container textarea { 
+        width: 100%; padding: 10px; border: 1px solid #333; 
+        border-radius: 4px; background-color: #1a1e21; color: #d1d1d1; 
+    }
+    .btn-submit { 
+        background-color: #007bff; color: white; border: none; 
+        padding: 10px 20px; border-radius: 5px; cursor: pointer; 
+        margin-top: 20px;
+    }
+</style>
+
+<div class="form-container">
+    <h1>Añadir Nuevo Producto</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ form.as_p }} 
+        
+        <button type="submit" class="btn-submit">Guardar Producto</button>
+    </form>
+    
+    <a href="{% url 'lista_productos' %}" style="display: block; margin-top: 20px; color: #007bff; text-decoration: none;">
+        ← Volver a la lista
+    </a>
+</div>

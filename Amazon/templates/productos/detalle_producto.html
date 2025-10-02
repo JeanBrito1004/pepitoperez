@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ producto.nombre }} - Detalle</title>
+    <style>
+        /* Pega todas tus reglas CSS de lista.html aquí, incluyendo: */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #212529fc; /* ESTE ES EL COLOR OSCURO */
+            color: #d1d1d1;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ... y todas las demás reglas de .navbar, .product, etc. ... */
+    </style>
+    </head>
+<body>
+
+<div class="navbar">
+    </div>
+
+<div class="detalle-container">
+    </div>
+
+    <script>
+    function confirmarAgregado() {
+        var btn = document.getElementById("add-to-cart-btn");
+        var msg = document.getElementById("confirmation-message");
+
+        // 1. Deshabilita el botón
+        btn.disabled = true;
+
+        // 2. Muestra el mensaje
+        msg.style.display = "inline";
+
+        // 3. Oculta el mensaje después de 3 segundos
+        setTimeout(function() {
+            msg.style.display = "none";
+            btn.disabled = false; // Vuelve a habilitar el botón
+        }, 3000); // 3000 milisegundos = 3 segundos
+
+        // NOTA: Aquí iría la lógica real para añadir el producto al carrito en el backend
+    }
+</script>
+</body>
+</html>
+<style>
+    /* Puedes adaptar los estilos oscuros de tu lista.html */
+    .detalle-container {
+        display: flex;
+        gap: 40px;
+        padding: 50px;
+        background-color: #212529; /* Fondo oscuro */
+        color: #d1d1d1;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .detalle-imagen {
+        flex: 1;
+    }
+    .detalle-imagen img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    }
+    .detalle-info {
+        flex: 1;
+    }
+    .detalle-info h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+        color: white;
+    }
+    .detalle-precio {
+        font-size: 2em;
+        color: #4CAF50; /* Un color verde que destaque */
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .detalle-descripcion {
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+    .detalle-stock {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="detalle-container">
+    
+    <div class="detalle-imagen">
+        {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" alt="Imagen de {{ producto.nombre }}">
+        {% else %}
+            <img src="https://via.placeholder.com/500x500.png?text=Imagen+No+Disponible" alt="Sin imagen">
+        {% endif %}
+    </div>
+
+    <div class="detalle-info">
+        <h1>{{ producto.nombre }}</h1>
+        
+        <div class="detalle-precio">${{ producto.precio }}</div>
+        
+        <hr style="border-color: #333;">
+
+        <h3>Descripción:</h3>
+        <p class="detalle-descripcion">{{ producto.descripcion|default:"No hay descripción disponible para este producto." }}</p>
+        
+        <div class="mt-4">
+            {% if producto.stock > 0 %}
+                <span class="detalle-stock" style="background-color: #4CAF50;">En Stock ({{ producto.stock }})</span>
+                <button class="btn btn-primary mt-3" style="background-color: #007bff; border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer;">
+                    Añadir a la Cesta
+                </button>
+            {% else %}
+                <span class="detalle-stock" style="background-color: #f44336;">Agotado</span>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'lista_productos' %}" style="display: block; margin-top: 30px; color: #007bff; text-decoration: none;">← Volver a la lista de productos</a>
+    </div>
+
+</div>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar Contraseña</title>
+    <style>
+        /* Importar una fuente similar a Gotham (por ejemplo, Roboto o Montserrat) */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            /* Colores inspirados en Roblox */
+            --roblox-dark-blue: #1C1C1C;
+            --roblox-card-bg: #2A2A2A; 
+            --roblox-text-color: #F8F8F8;
+            --roblox-accent-red: #E11F25;
+            --roblox-button-hover: #CC1C20;
+            --roblox-input-bg: #404040; /* Fondo de campo de texto */
+            --roblox-input-border: #606060;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--roblox-dark-blue);
+            color: var(--roblox-text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: var(--roblox-card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 90%;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--roblox-text-color);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1em;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 0;
+            box-sizing: border-box;
+            border: 1px solid var(--roblox-input-border);
+            border-radius: 6px;
+            background-color: var(--roblox-input-bg);
+            color: var(--roblox-text-color);
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="password"]:focus {
+            border-color: var(--roblox-accent-red);
+        }
+
+        button {
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--roblox-text-color);
+            background-color: var(--roblox-accent-red);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: background-color 0.2s ease;
+            font-family: 'Roboto', sans-serif;
+            border: none;
+            box-shadow: 0 3px 0 0 #A8181B; /* Sombra para darle volumen */
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: var(--roblox-button-hover);
+            box-shadow: 0 2px 0 0 #951619;
+        }
+
+        /* Enlace de regreso con estilo sutil */
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            color: #AAAAAA;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .back-link:hover {
+            color: var(--roblox-text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cambiar Contraseña</h1>
+        <form action="/update-password" method="POST">
+            <div class="form-group">
+                <label for="current-password">Contraseña Actual:</label>
+                <input type="password" id="current-password" name="current_password" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">Nueva Contraseña:</label>
+                <input type="password" id="new-password" name="new_password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Nueva Contraseña:</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+            </div>
+            <button type="submit">Actualizar Contraseña</button>
+        </form>
+        <a href="/" class="back-link">Volver al Inicio</a>
+    </div>
+</body>
+</html>
